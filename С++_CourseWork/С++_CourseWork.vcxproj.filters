@@ -18,6 +18,9 @@
     <ClInclude Include="warehouse.h">
       <Filter>Исходные файлы</Filter>
     </ClInclude>
+    <ClInclude Include="product.h">
+      <Filter>Исходные файлы</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
