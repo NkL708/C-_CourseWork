@@ -21,6 +21,7 @@ class Warehouse
 public:
 	Warehouse();
 	void Add(Product value);
+	void Add(Product value, int index);
 	void Print();
 };
 
@@ -49,6 +50,25 @@ inline void Warehouse::Add(Product value)
 	size++;
 }
 
+inline void Warehouse::Add(Product value, int index)
+{
+	Element* current = head;
+	//if (index == 0) {
+	//	head = new Element(value, current, current->previous);
+	//	current->previous->next = head;
+	//	current->previous = head;
+	//}
+	while (index > 0) {
+		current = current->next;
+		index--;
+	}
+	Element* temp = current;
+	current = new Element(value, temp->next, temp->previous);
+	temp->previous->next = current;
+	temp->next->previous = current;
+	size++;
+}
+
 inline void Warehouse::Print()
 {
 	Element* current = head;
@@ -60,7 +80,7 @@ inline void Warehouse::Print()
 		cout << "Дата прибытия товара: " << current->data.arrivalDate.year << "." << current->data.arrivalDate.month <<
 			"." << current->data.arrivalDate.day << endl;
 		cout << "Стоимость товара: " << current->data.cost << " рублей" << endl;
-		cout << "Торговая надбавка товара: " << current->data.percent << "%" << endl;
+		cout << "Торговая надбавка товара: " << current->data.percent << "%" << endl << endl;
 		current = current->next;
 		i++;
 	} while (current != head);
