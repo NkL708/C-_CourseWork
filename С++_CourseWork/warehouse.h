@@ -22,6 +22,8 @@ public:
 	Warehouse();
 	void Add(Product value);
 	void Add(Product value, int index);
+	void Delete();
+	void Delete(int index);
 	void Print();
 };
 
@@ -34,18 +36,16 @@ inline void Warehouse::Add(Product value)
 {
 	if (head == nullptr) {
 		head = new Element(value);
-		head->next = head;
-		head->previous = head;
+		head->next = nullptr;
+		head->previous = nullptr;
 	}
 	else {
 		Element* current = head;
-		while (current->next != head)
-		{
+		while (current->next != nullptr) {
 			current = current->next;
 		}
-		Element* newItem = new Element(value, head, head->previous);
+		Element* newItem = new Element(value, nullptr, current);
 		current->next = newItem;
-		head->previous = newItem;
 	}
 	size++;
 }
@@ -53,20 +53,68 @@ inline void Warehouse::Add(Product value)
 inline void Warehouse::Add(Product value, int index)
 {
 	Element* current = head;
-	//if (index == 0) {
-	//	head = new Element(value, current, current->previous);
-	//	current->previous->next = head;
-	//	current->previous = head;
-	//}
-	while (index > 0) {
-		current = current->next;
-		index--;
+	if (index == 0) {
+		head = new Element(value, head, nullptr);
 	}
-	Element* temp = current;
-	current = new Element(value, temp->next, temp->previous);
-	temp->previous->next = current;
-	temp->next->previous = current;
+	else if (index == size) {
+		while (current->next != nullptr) {
+			current = current->next;
+		}
+		Element* newItem = new Element(value, nullptr, current);
+		current->next = newItem;
+	}
+	else {
+		while (index - 1 > 0) {
+			current = current->next;
+			index--;
+		}
+		Element* newItem = new Element(value, current->next, current);
+		current->next = newItem;
+		current->next->previous = newItem;
+	}
 	size++;
+}
+
+inline void Warehouse::Delete()
+{
+	if (head == nullptr) return;
+	else {
+		Element* current = head;
+		while (current->next->next != nullptr) {
+			current = current->next;
+		}
+		delete current->next;
+		current->next = nullptr;
+	}
+	size--;
+}
+
+inline void Warehouse::Delete(int index)
+{
+	Element* current = head;
+	if (index == 0) {
+		head = head->next;
+		delete head->previous;
+		head->previous = nullptr;
+	}
+	else if (index == size - 1) {
+		Element* current = head;
+		while (current->next->next != nullptr) {
+			current = current->next;
+		}
+		delete current->next;
+		current->next = nullptr;
+	}
+	else {
+		while (index > 0) {
+			current = current->next;
+			index--;
+		}
+		current->next->previous = current->previous;
+		current->previous->next = current->next;
+		delete current;
+	}
+	size--;
 }
 
 inline void Warehouse::Print()
@@ -83,5 +131,5 @@ inline void Warehouse::Print()
 		cout << "Торговая надбавка товара: " << current->data.percent << "%" << endl << endl;
 		current = current->next;
 		i++;
-	} while (current != head);
+	} while (current != nullptr);
 }
