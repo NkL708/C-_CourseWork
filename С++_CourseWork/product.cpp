@@ -19,7 +19,6 @@ Product::Product(string name, string category, int count, Date arrivalDate, int 
 
 Product Product::CreateProduct()
 {
-	setlocale(LC_ALL, "Russian");
 	int count, cost, percent;
 	string name, category;
 	Product::Date arrivalDate;
