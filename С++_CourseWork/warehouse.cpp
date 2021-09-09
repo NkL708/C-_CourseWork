@@ -305,3 +305,10 @@ istream& Warehouse::readFromBin(istream& stream) {
 	}
 	return stream;
 }
+
+Warehouse::Element::Element(Product data, Element* next, Element* previous)
+{
+	this->next = next;
+	this->previous = previous;
+	this->data = data;
+}

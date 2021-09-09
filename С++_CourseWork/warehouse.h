@@ -6,11 +6,7 @@ class Warehouse
 	class Element
 	{
 	public:
-		Element(Product data, Element* next = nullptr, Element* previous = nullptr) {
-			this->next = next;
-			this->previous = previous;
-			this->data = data;
-		}
+		Element(Product data, Element* next = nullptr, Element* previous = nullptr);
 		Product data;
 		Element* next;
 		Element* previous;
