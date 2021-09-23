@@ -56,13 +56,14 @@ void Warehouse::Delete()
 	if (head == nullptr) return;
 	else {
 		Element* current = head;
-		while (current->next->next != nullptr) {
+		while (current->next != nullptr) {
 			current = current->next;
 		}
-		delete current->next;
-		current->next = nullptr;
+		delete current;
+		current = nullptr;
 	}
 	size--;
+	if (size == 0) head = nullptr;
 }
 
 void Warehouse::Delete(int index)

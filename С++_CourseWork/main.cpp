@@ -7,9 +7,9 @@ int main()
 	Warehouse collection;
 	ofstream bFileOut;
 	ifstream bFileIn;
-	collection.Add(Product("Мыло", "Хозтовары", 200, Product::Date(2018, 5, 30), 40, 11));
-	collection.Add(Product("Вёдра", "Хозтовары", 10, Product::Date(2019, 9, 20), 400, 10));
-	collection.Add(Product("Швабры", "Хозтовары", 5, Product::Date(2020, 7, 30), 500, 20));
+	//collection.Add(Product("Мыло", "Хозтовары", 200, Product::Date(2018, 5, 30), 40, 11));
+	//collection.Add(Product("Вёдра", "Хозтовары", 10, Product::Date(2019, 9, 20), 400, 10));
+	//collection.Add(Product("Швабры", "Хозтовары", 5, Product::Date(2020, 7, 30), 500, 20));
 	//collection.Add(Product("Коробки", "Прочее", 1000, Product::Date(2021, 7, 28), 10, 5));
 	//collection.Add(Product("Гвозди", "Стройматериалы", 50000, Product::Date(2020, 5, 20), 50, 14));
 	//collection.Add(Product("Скотч", "Стройматериалы", 300, Product::Date(2021, 6, 28), 100, 16));
@@ -64,8 +64,8 @@ int main()
 		case 8:
 			bFileOut.open("bFile.txt");
 			collection.writeToBin(bFileOut);
-			cout << "Склад сохранён в файл" << endl;
 			bFileOut.close();
+			cout << "Склад сохранён в файл" << endl;
 			break;
 		case 9:
 			bFileIn.open("bFile.txt");
@@ -77,5 +77,7 @@ int main()
 			break;
 		}
 	}
+	
+	
 	return 0;
 }

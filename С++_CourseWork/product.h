@@ -6,7 +6,7 @@
 
 using namespace std;
 
-struct Product 
+struct Product
 {
 	struct Date 
 	{
